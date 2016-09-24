@@ -57,7 +57,7 @@
     ];
     var alreadyBoughtItems = [];
 
-    service.buyItem = function(itemIndex, itemsArray) {
+    service.buyItem = function(itemIndex) {
       var item = toBuyItems.splice(itemIndex, 1)[0];
       alreadyBoughtItems.push(item);
     };
