@@ -45,6 +45,14 @@
       {
         name: 'Granola bars',
         quantity: 5
+      },
+      {
+        name: 'Drinks',
+        quantity: 7
+      },
+      {
+        name: 'Milk',
+        quantity: 1
       }
     ];
     var alreadyBoughtItems = [];
