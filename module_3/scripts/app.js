@@ -35,7 +35,6 @@
       restrict: 'E',
       templateUrl: 'loader/itemsloaderindicator.template.html',
       link: function(scope, element) {
-        console.dir(scope);
         scope.$watch('narrowItDown.isLoading', function(newValue, oldValue) {
           if (newValue === true) {
             var loadDiv = element.find('div');
