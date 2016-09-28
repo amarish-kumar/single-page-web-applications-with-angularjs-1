@@ -66,6 +66,7 @@
         MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm)
           .then(checkResponse);
       } else {
+        narrowItDown.found = [];
         narrowItDown.isLoading = false;
         narrowItDown.shouldDisplayMessage = true;
       }
