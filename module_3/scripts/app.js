@@ -98,7 +98,7 @@
     menuSearch.getMatchedMenuItems = function(searchTerm) {
       return $http.get(API.url + API.endpoint.items)
         .then(function(response) {
-          var foundItems = $filter('filter')(response.data.menu_items, {description: searchTerm});
+          var foundItems = $filter('filter')(response.data.menu_items, {description: searchTerm}, true);
           foundItems = $filter('orderBy')(foundItems, 'name');
           return foundItems;
         });
