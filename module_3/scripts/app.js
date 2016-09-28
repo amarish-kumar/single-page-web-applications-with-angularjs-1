@@ -6,6 +6,7 @@
     .controller('NarrowItDownController', NarrowItDownController)
     .service('MenuSearchService', MenuSearchService)
     .directive('foundItems', foundItems)
+    .directive('itemsLoaderIndicator', itemsLoaderIndicator)
     .constant('API', {
       url: 'https://davids-restaurant.herokuapp.com',
       endpoint: {
@@ -29,23 +30,66 @@
     return ddo;
   }
 
+  function itemsLoaderIndicator() {
+    var ddo = {
+      restrict: 'E',
+      templateUrl: 'loader/itemsloaderindicator.template.html',
+      link: function(scope, element) {
+        console.dir(scope);
+        scope.$watch('narrowItDown.isLoading', function(newValue, oldValue) {
+          if (newValue === true) {
+            var loadDiv = element.find('div');
+            loadDiv.css('display', 'block');
+          }
+          else {
+            var loadDiv = element.find('div');
+            loadDiv.css('display', 'none');
+          }
+        });
+      }
+    };
+
+    return ddo;
+  }
+
   function NarrowItDownController(MenuSearchService) {
     var narrowItDown = this;
 
     narrowItDown.searchTerm = '';
     narrowItDown.found = [];
+    narrowItDown.shouldDisplayMessage = false;
+    narrowItDown.isLoading = false;
 
     narrowItDown.doSearchTerm = function() {
-      MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm)
-        .then(function(response) {
-          narrowItDown.found = response;
-        });
+      if(narrowItDown.searchTerm) {
+        narrowItDown.isLoading = true;
+        MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm)
+          .then(checkResponse);
+      } else {
+        narrowItDown.isLoading = false;
+        narrowItDown.shouldDisplayMessage = true;
+      }
     };
 
     narrowItDown.removeItem = function(itemIndex) {
       console.log(itemIndex);
       narrowItDown.found.splice(itemIndex, 1);
     };
+
+    function resetSearch() {
+      narrowItDown.isLoading = false;
+      narrowItDown.shouldDisplayMessage = false;
+      narrowItDown.searchTerm = '';
+    }
+
+    function checkResponse(response) {
+      resetSearch();
+      narrowItDown.found = response;
+      if(!(narrowItDown.found.length > 0)) {
+        narrowItDown.shouldDisplayMessage = true;
+      }
+    }
+
   }
 
   function MenuSearchService($http, $filter, API) {
