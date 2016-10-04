@@ -4,8 +4,11 @@
   angular.module('MenuApp')
     .controller('CategoriesController', CategoriesController);
 
-  function CategoriesController() {
-    
-  }
+  CategoriesController.$inject = ['categories'];
 
+  function CategoriesController(categories) {
+    var menuCategories = this;
+
+    menuCategories.categories = categories;
+  }
 })();

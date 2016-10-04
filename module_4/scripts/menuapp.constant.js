@@ -9,5 +9,4 @@
         items: '/menu_items.json'
       }
     });
-
 })();

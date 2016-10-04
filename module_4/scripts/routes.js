@@ -17,12 +17,25 @@
       .state('categories', {
         url: '/categories',
         templateUrl: 'views/categories.html',
-        controller: 'CategoriesController as menuCategories'
+        controller: 'CategoriesController as menuCategories',
+        resolve: {
+          categories: ['MenuDataService', function(MenuDataService) {
+            return MenuDataService.getAllCategories();
+          }]
+        }
       })
       .state('items', {
         url: '/items?category',
         templateUrl: 'views/items.html',
-        controller: 'ItemsController as menuItems'
+        controller: 'ItemsController as menuItems',
+        resolve: {
+          items: ['$stateParams', 'MenuDataService', function($stateParams, MenuDataService) {
+            return MenuDataService.getItemsForCategory($stateParams.category);
+          }],
+          category: ['$stateParams', function($stateParams) {
+            return $stateParams.category;
+          }]
+        }
       });
   }
 })();

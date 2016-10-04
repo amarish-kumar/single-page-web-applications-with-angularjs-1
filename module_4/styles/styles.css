@@ -1,14 +1,8 @@
-h1 {
-  margin-bottom: 30px;
+
+.thumbnail .caption {
+  text-align: center;
 }
-input[type="text"] {
-  width: 200px;
-  float: left;
-}
-.narrow-button {
-  float: left;
-  margin-left: 10px;
-}
+
 .loader {
   display: none;
   margin-left: 5px;

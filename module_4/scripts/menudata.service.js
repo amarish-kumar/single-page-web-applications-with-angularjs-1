@@ -18,7 +18,7 @@
     }
 
     menuData.getItemsForCategory = function(category) {
-      return $http.get(API.url + API.endpoint.items, { params: {category: category} })
+      return $http.get(API.url + API.endpoint.items, { params: { category: category } })
         .then(function(response) {
           console.dir(response.data.menu_items);
           return response.data.menu_items;
