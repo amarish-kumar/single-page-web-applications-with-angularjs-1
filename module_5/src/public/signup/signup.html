@@ -1,0 +1,25 @@
+<div class="container">
+  <h2 class="text-center">Sign Up</h2>
+  <form name="signUpForm" class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2" novalidate>
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input name="firstName" type="text" class="form-control" ng-model="signUpCtrl.user.firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last name</label>
+      <input name="lastName" type="text" class="form-control" ng-model="signUpCtrl.lastName.lastName" required>
+    </div>
+    <div class="form-group">
+      <label for="emailAddress">Email</label>
+      <input name="emailAddress" type="email" class="form-control" ng-model="signUpCtrl.user.email" required>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone</label>
+      <input name="phoneNumber" type="text" class="form-control" ng-model="signUpCtrl.user.phone" pattern="" required>
+    </div>
+    <div class="form-group">
+      <label for="menuNumber">What's your favorite menu number?</label>
+      <input name="menuNumber" type="text" class="form-control" ng-model="signUpCtrl.user.menuNumber" ng-change="signUpCtrl.checkMenuNumber()" required>
+    </div>
+  </form>
+</div>
