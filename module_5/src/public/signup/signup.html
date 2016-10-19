@@ -1,6 +1,6 @@
 <div class="container">
   <h2 class="text-center">Sign Up</h2>
-  <form name="signUpForm" class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2" novalidate>
+  <form ng-submit="signUpForm.submitForm()" name="signUpForm" class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2" novalidate>
     <div class="form-group">
       <label for="firstName">First name</label>
       <input name="firstName" type="text" class="form-control" ng-model="signUpCtrl.user.firstName" required>
@@ -21,5 +21,6 @@
       <label for="menuNumber">What's your favorite menu number?</label>
       <input name="menuNumber" type="text" class="form-control" ng-model="signUpCtrl.user.menuNumber" ng-change="signUpCtrl.checkMenuNumber()" required>
     </div>
+    <input type="submit" class="btn btn-info" value="Submit">
   </form>
 </div>
