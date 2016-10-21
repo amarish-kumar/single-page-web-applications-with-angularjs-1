@@ -160,9 +160,25 @@ input:-webkit-autofill {
   outline: none;
 }
 
-
 /* END SIGN UP PAGE */
 
+/* MY INFO PAGE */
+
+#user-info-list .list-group .list-group-item .list-group-item-heading {
+  color: #333333;
+  font-weight: bold;
+}
+
+#user-info-list .list-group .list-group-item .list-group-item-text {
+  color: #333333;
+}
+
+#user-info-list .list-group .list-group-item .img-responsive {
+  margin: 10px auto 0;
+  border-radius: 4px;
+}
+
+/* END MY INFO PAGE */
 
 /********** Large devices only **********/
 @media (min-width: 1200px) {

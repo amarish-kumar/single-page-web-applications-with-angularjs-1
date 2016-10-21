@@ -41,8 +41,8 @@
     </div>
     <div class="form-group">
       <label class="control-label" for="menuNumber">What's your favorite menu number?</label>
-      <input name="menuNumber" type="text" class="form-control" placeholder="Type your favorite menu number here" ng-model="signUpCtrl.user.menuNumber">
-      <span class="label label-danger" ng-if="signUpCtrl.invalidMenuNumber">
+      <input name="menuNumber" type="text" class="form-control" ng-blur="signUpCtrl.checkMenuNumber()" placeholder="Type your favorite menu number here" ng-model="signUpCtrl.user.menuNumber">
+      <span class="label label-danger" ng-if="!signUpCtrl.validMenuNumber && (signUpForm.menuNumber.$touched || signUpForm.$submitted)">
         No such menu number exists
       </span>
     </div>
