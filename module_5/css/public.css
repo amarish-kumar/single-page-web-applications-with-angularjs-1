@@ -124,6 +124,8 @@ input:-webkit-autofill {
   background-color: #4cae4c;
   border-color: #4cae4c;
   color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 
 #sign-up-form .form-group .form-control {
