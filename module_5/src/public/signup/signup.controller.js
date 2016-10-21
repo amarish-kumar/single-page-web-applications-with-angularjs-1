@@ -5,22 +5,35 @@
     .module('public')
     .controller('SignUpController', SignUpController);
 
-  SignUpController.$inject = ['MenuService', 'SessionStorage'];
+  SignUpController.$inject = ['$scope', 'MenuService', 'SessionStorage'];
 
-  function SignUpController(MenuService, SessionStorage) {
+  function SignUpController($scope, MenuService, SessionStorage) {
     var signUpCtrl = this;
 
     signUpCtrl.user = {};
+    signUpCtrl.userInfoSaved = false;
+    signUpCtrl.invalidMenuNumber = false;
 
     signUpCtrl.submitForm = function() {
       if ($scope.signUpForm.$valid) {
-        MenuService.getMenuItemsByShortName(signUpCtrl.user.menuNumber)
+        signUpCtrl.invalidMenuNumber = false;
+        var shortName = signUpCtrl.user.menuNumber.toUpperCase();
+        MenuService.getMenuItemsByShortName(shortName)
           .then(function(response) {
-            console.log(response);
+            signUpCtrl.user.menuNumber = response;
+            SessionStorage.storeObject('userinfo', signUpCtrl.user);
+            signUpCtrl.userInfoSaved = true;
+            $scope.signUpForm.$setPristine();
+            $scope.signUpForm.$setUntouched();
+            signUpCtrl.user = {};
           })
           .catch(function(response) {
-            console.log(response);
+            signUpCtrl.invalidMenuNumber = true;
           });
+      } else {
+        if (signUpCtrl.userInfoSaved) {
+          signUpCtrl.userInfoSaved = false;
+        }
       }
     }
 
