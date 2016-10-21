@@ -28,6 +28,7 @@
 
     signUpCtrl.submitForm = function() {
       if ($scope.signUpForm.$valid && signUpCtrl.validMenuNumber) {
+        delete signUpCtrl.user.menuNumber;
         SessionStorage.storeObject('userinfo', signUpCtrl.user);
         signUpCtrl.userInfoSaved = true;
         $scope.signUpForm.$setPristine();
